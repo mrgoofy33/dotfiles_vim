@@ -1,5 +1,4 @@
-" Encode 
-set termencoding=utf-8
+" Encode set termencoding=utf-8
 set encoding=utf-8
 set fileencodings=iso-2022-jp,sjis,euc-jp,utf-8
 ""set fileencodings=iso-2022-jp,sjis,euc-jp,utf-8
@@ -10,6 +9,7 @@ set ruler
 set list
 set swapfile
 set nobackup
+syntax on
 
 " Auto Indent 
 set autoindent
@@ -103,7 +103,8 @@ let g:buftabs_active_highlight_group="Visual"
 
 " StatusLine Setting 
 "set statusline=%F%m%r%h%w\ [%{(&fenc!=''?&fenc:&enc)}]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set statusline=%{g:buftabs_list}%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
+"set statusline=%{g:buftabs_list}%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
+set statusline=%F%m%r%h%w%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
 set laststatus=2
 
 " Filetype Setting 
@@ -113,7 +114,7 @@ autocmd BufNewFile,BufRead *.js set filetype=javascript
 autocmd BufNewFile,BufRead *.css set filetype=css
 autocmd BufNewFile,BufRead *.php set filetype=php
 autocmd BufNewFile,BufRead *.pl set filetype=perl
-autocmd BufNewFile,BufRead *.pck,*.sql set filetype=sql
+autocmd BufNewFile,BufRead *.pck,*.prc,*.sql set filetype=sql
 
 " templates Files
 autocmd BufNewFile *.html 0r ~/.vim/templates/skel.html
@@ -158,4 +159,19 @@ let g:netrw_browse_split=4
 let g:netrw_winsize="25"
 let g:netrw_liststyle=3
 map <silent> <leader>ve :Vexplore<cr>
+
+" eregex.vim
+map / <ESC>:M/
+
+" vimgrep | cw
+" set grepprg=internal
+autocmd QuickfixCmdPost vimgrep cw
+" autocmd QuickfixCmdPost grep cw
+
+" HTML encoding
+vmap <silent> sx :Str2HtmlEntity<cr>
+vmap <silent> sr :Entity2HtmlString<cr>
+
+let g:user_zen_expandabbr_key='<c-e>'
+let g:user_zen_expandword_key='<c-e>'
 
