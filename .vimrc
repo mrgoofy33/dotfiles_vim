@@ -175,3 +175,24 @@ vmap <silent> sr :Entity2HtmlString<cr>
 let g:user_zen_expandabbr_key='<c-e>'
 let g:user_zen_expandword_key='<c-e>'
 
+":Csvhl n ( n is number)
+" http://vim-users.jp/category/vim-hacks/page/5/
+function! CSVH(x)
+    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
+    execute 'normal ^'.a:x.'f,'
+endfunction
+command! -nargs=1 Csvhl :call CSVH(<args>)
+
+":Tsvhl n ( n is number)
+function! TSVH(x)
+    execute 'match Keyword /^\([^\t]*\t\)\{'.a:x.'}\zs[^\t]*/'
+    execute 'normal ^'.a:x.'f,'
+endfunction
+command! -nargs=1 Tsvhl :call TSVH(<args>)
+
+"git-vim setting
+"http://github.com/motemen/git-vim
+"http://vim-users.jp/2009/09/hack67/
+"let g:git_no_map_default=1
+"let g:git_command_edit = 'rightbelow vnew'
+
